@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 INPUT 1 OUTPUT TEMPLATE</title>
+    <style>
+        body {
+            background-image: url('whodababy.jpg'); /* Initial background image */
+            background-size: cover; /* Ensure the image covers the whole page */
+            background-position: center center; /* Center the image */
+            background-attachment: fixed; /* Keep the background fixed while scrolling */
+            color: white; /* Change text color to white for contrast */
+            margin: 0;
+            height: 100vh; /* Ensure the body takes the full viewport height */
+            font-family: Arial, sans-serif;
+            position: absolute; /* Necessary for absolute positioning of input and button */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* STYLE FOR THE SEARCH BAR */
+        #searchBar {
+            font-size: 18px;
+            padding: 10px;
+            margin-bottom: 20px; /* Space below the search bar */
+            width: 300px;
+            border-radius: 5px;
+            border: 2px solid #fff;
+            background-color: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+            color: white;
+        }
+
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none; /* This line is mandatory */
+            margin-top: 20px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SEARCH BAR -->
+    <input type="text" id="searchBar" placeholder="Enter characters to search...">
+
+    <!-- IMAGE TO DISPLAY -->
+    <img id="displayedImage" src="" alt="Displayed Image">
+
+    <script>
+        // Function to change background dynamically based on input
+        function changeBackground(input) {
+            let newBackground = "whodababy.jpg"; // Default background image
+
+            // Example logic to change background based on the input
+            if (input.toUpperCase() === "AB") {
+                newBackground = "newBackground1.jpg"; // Replace with your new image URL
+            } else if (input.toUpperCase() === "CD") {
+                newBackground = "newBackground2.jpg"; // Replace with your new image URL
+            } else {
+                newBackground = "defaultBackground.jpg"; // Default background image
+            }
+
+            // Force the browser to reload the image (using a timestamp query parameter)
+            document.body.style.backgroundImage = `url('${newBackground}?t=${new Date().getTime()}')`;
+        }
+
+        // Function to display image based on input
+        function displayImage(input) {
+            const imgElement = document.getElementById("displayedImage");
+
+            // Check conditions for image display
+            if (input.toUpperCase() === "KT") {
+                imgElement.src = "28.png";  // Show this image
+                imgElement.style.display = "block"; // Display the image
+            } 
+            else if (input.toUpperCase() === "AC") {
+                imgElement.src = "26.png";  // Show this image
+                imgElement.style.display = "block"; // Display the image
+            } 
+            else if (input.toUpperCase() === "EJ") {
+                imgElement.src = "27.png";  // Show this image
+                imgElement.style.display = "block"; // Display the image
+            } 
+            else {
+                imgElement.style.display = "none"; // If no condition is met, hide the image
+            }
+        }
+
+        // Listen to the 'input' event on the search bar to automatically change background and image
+        document.getElementById('searchBar').addEventListener('input', function() {
+            const searchInput = document.getElementById('searchBar').value;
+            changeBackground(searchInput); // Change background based on search input
+            displayImage(searchInput); // Show the correct image based on search input
+        });
+    </script>
+
+</body>
+</html>
